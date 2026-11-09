@@ -1,0 +1,7 @@
+{
+  "name": "Assure POS",
+  "description": "A dependable, locally hosted point-of-sale and inventory system for independent apparel retailers, with barcode scanning, garment variants, returns, and configurable GST support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

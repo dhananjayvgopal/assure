@@ -1,0 +1,341 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media print {
+  html, body, #root, #app-shell {
+    width: 72mm !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #fff !important;
+    -webkit-font-smoothing: auto !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  #app-shell { display: block !important; }
+  .print\:hidden, button { display: none !important; }
+
+  body[data-print-target="thermal-receipt"] #app-shell > *:not(#receipt-print-modal),
+  body[data-print-target="thermal-estimate"] #app-shell > *:not(#estimate-print-modal) {
+    display: none !important;
+  }
+
+  body[data-print-target="thermal-voucher"] #app-shell > *:not(#app-main),
+  body[data-print-target="thermal-voucher"] #app-main > *:not(#vouchers-view),
+  body[data-print-target="thermal-voucher"] #vouchers-view > *:not(#voucher-print-modal) {
+    display: none !important;
+  }
+
+  body[data-print-target="printable-hangtags"] #app-shell > *:not(#app-main),
+  body[data-print-target="printable-hangtags"] #app-main > *:not(#inventory-view),
+  body[data-print-target="printable-hangtags"] #inventory-view > *:not(#hangtag-print-modal) {
+    display: none !important;
+  }
+
+  body[data-print-target="printable-hangtags"] #hangtag-print-modal > div > div:not(.print\:hidden) {
+    display: block !important;
+    width: 72mm !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+
+  #receipt-print-modal, #estimate-print-modal, #voucher-print-modal, #hangtag-print-modal {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    width: 72mm !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    backdrop-filter: none !important;
+  }
+
+  #receipt-print-modal > div, #estimate-print-modal > div, #voucher-print-modal > div, #hangtag-print-modal > div {
+    display: block !important;
+    width: 72mm !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  #receipt-print-area, #estimate-print-area, #voucher-print-area {
+    display: block !important;
+    width: 72mm !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+
+  html[data-print-target="thermal-voucher"][data-print-paper-width="80mm"] #voucher-print-modal,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="80mm"] body,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="80mm"] #root,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="80mm"] #app-shell,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="80mm"] #app-main,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="80mm"] #vouchers-view,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="80mm"] #voucher-print-modal > div,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="80mm"] #voucher-print-area {
+    width: 80mm !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow: visible !important;
+  }
+
+  html[data-print-target="thermal-voucher"][data-print-paper-width="58mm"] #voucher-print-modal,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="58mm"] body,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="58mm"] #root,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="58mm"] #app-shell,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="58mm"] #app-main,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="58mm"] #vouchers-view,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="58mm"] #voucher-print-modal > div,
+  html[data-print-target="thermal-voucher"][data-print-paper-width="58mm"] #voucher-print-area {
+    width: 58mm !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow: visible !important;
+  }
+
+  #thermal-receipt, #thermal-voucher, #thermal-estimate {
+    display: block !important;
+    position: static !important;
+    width: 70mm !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 1mm !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    text-rendering: optimizeLegibility !important;
+  }
+
+  #thermal-voucher {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+
+  #thermal-voucher *, #thermal-voucher *::before, #thermal-voucher *::after {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  #thermal-voucher .flex { flex-wrap: wrap !important; width: 100% !important; }
+
+  #thermal-receipt[data-paper-width="58mm"],
+  #thermal-voucher[data-paper-width="58mm"],
+  #thermal-estimate[data-paper-width="58mm"] {
+    width: 56mm !important;
+  }
+
+  #thermal-receipt:not([data-invoice-format="a4"]),
+  #thermal-receipt:not([data-invoice-format="a4"]) * {
+    color: #000 !important;
+    border-color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+
+  #thermal-receipt:not([data-invoice-format="a4"]) svg text {
+    fill: #000 !important;
+  }
+
+  html[data-print-target="thermal-receipt"][data-print-layout="invoice-a4"],
+  body[data-print-target="thermal-receipt"][data-print-layout="invoice-a4"],
+  body[data-print-target="thermal-receipt"][data-print-layout="invoice-a4"] #root,
+  body[data-print-target="thermal-receipt"][data-print-layout="invoice-a4"] #app-shell,
+  body[data-print-target="thermal-receipt"][data-print-layout="invoice-a4"] #receipt-print-modal,
+  body[data-print-target="thermal-receipt"][data-print-layout="invoice-a4"] #receipt-print-modal > div,
+  body[data-print-target="thermal-receipt"][data-print-layout="invoice-a4"] #receipt-print-area {
+    width: 210mm !important;
+    max-width: 210mm !important;
+  }
+
+  #thermal-receipt[data-invoice-format="a4"] {
+    width: 190mm !important;
+    max-width: 190mm !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 9pt !important;
+    color: #20364b !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  #printable-hangtags {
+    position: static !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    align-content: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 1mm !important;
+    width: 70mm !important;
+    max-width: 70mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #fff !important;
+  }
+
+  #printable-hangtags > div {
+    flex: none !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    border-color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    background: #fff !important;
+  }
+
+  #printable-hangtags[data-label-format="50x30mm"] > div {
+    width: 50mm !important;
+    height: 30mm !important;
+    padding: 1mm !important;
+    border-radius: 0 !important;
+  }
+
+  #printable-hangtags[data-label-format="50x30mm"] > div > div:nth-child(2),
+  #printable-hangtags[data-label-format="50x30mm"] > div > div:nth-child(3) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  #printable-hangtags[data-label-format="hangtag"] > div {
+    width: 55mm !important;
+    height: 74mm !important;
+    padding: 2mm !important;
+    border-radius: 0 !important;
+  }
+
+  html[data-print-target="printable-hangtags"][data-print-layout="roll-100mm-2up"],
+  body[data-print-target="printable-hangtags"][data-print-layout="roll-100mm-2up"],
+  body[data-print-target="printable-hangtags"][data-print-layout="roll-100mm-2up"] #root,
+  body[data-print-target="printable-hangtags"][data-print-layout="roll-100mm-2up"] #app-shell,
+  body[data-print-target="printable-hangtags"][data-print-layout="roll-100mm-2up"] #hangtag-print-modal,
+  body[data-print-target="printable-hangtags"][data-print-layout="roll-100mm-2up"] #hangtag-print-modal > div,
+  body[data-print-target="printable-hangtags"][data-print-layout="roll-100mm-2up"] #hangtag-print-modal > div > div:not(.print\:hidden) {
+    width: 100mm !important;
+    max-width: 100mm !important;
+  }
+
+  #printable-hangtags[data-print-layout="roll-100mm-2up"] {
+    display: grid !important;
+    grid-template-columns: repeat(2, 50mm) !important;
+    grid-auto-rows: 30mm !important;
+    gap: 0 !important;
+    justify-content: start !important;
+    align-content: start !important;
+  }
+
+  #printable-hangtags[data-print-layout="roll-100mm-2up"][data-label-format="hangtag"] {
+    grid-template-columns: 55mm !important;
+    grid-auto-rows: 74mm !important;
+    justify-content: center !important;
+    row-gap: 1mm !important;
+  }
+
+  html[data-print-target="printable-hangtags"][data-print-layout="a4"],
+  body[data-print-target="printable-hangtags"][data-print-layout="a4"],
+  body[data-print-target="printable-hangtags"][data-print-layout="a4"] #root,
+  body[data-print-target="printable-hangtags"][data-print-layout="a4"] #app-shell,
+  body[data-print-target="printable-hangtags"][data-print-layout="a4"] #hangtag-print-modal,
+  body[data-print-target="printable-hangtags"][data-print-layout="a4"] #hangtag-print-modal > div,
+  body[data-print-target="printable-hangtags"][data-print-layout="a4"] #hangtag-print-modal > div > div:not(.print\:hidden) {
+    width: 210mm !important;
+    max-width: 210mm !important;
+  }
+
+  body[data-print-target="printable-hangtags"] #app-main,
+  body[data-print-target="printable-hangtags"] #inventory-view,
+  body[data-print-target="printable-hangtags"] #hangtag-print-modal,
+  body[data-print-target="printable-hangtags"] #hangtag-print-modal > div,
+  body[data-print-target="printable-hangtags"] #hangtag-print-modal > div > div,
+  body[data-print-target="printable-hangtags"] #printable-hangtags,
+  body[data-print-target="printable-hangtags"] .overflow-y-auto,
+  body[data-print-target="printable-hangtags"] .overflow-x-auto {
+    overflow: visible !important;
+    scrollbar-width: none !important;
+  }
+
+  body[data-print-target="printable-hangtags"] ::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  #printable-hangtags[data-print-layout="a4"] {
+    display: grid !important;
+    grid-template-columns: repeat(2, 50mm) !important;
+    grid-auto-rows: 30mm !important;
+    gap: 2mm !important;
+    justify-content: center !important;
+    align-content: start !important;
+    width: 200mm !important;
+    max-width: 200mm !important;
+  }
+
+  #printable-hangtags[data-print-layout="a4"][data-label-format="hangtag"] {
+    grid-template-columns: repeat(3, 55mm) !important;
+    grid-auto-rows: 74mm !important;
+    justify-content: center !important;
+  }
+
+  #printable-hangtags, #printable-hangtags * {
+    color: #000 !important;
+    border-color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+
+  #printable-hangtags svg text {
+    fill: #000 !important;
+  }
+}
